@@ -3,11 +3,12 @@ PostgresToGwern
 
 Exemples :
 ==========
-
+```php
 $pTG = new PostgresToGwern("localhost", "postgres", "root", "downloadShpZip");
 
 $pTG->query("test1", "gwern1", "\"SELECT * FROM ".'\"zh2-polygon\"'." WHERE id='idtutu'\"");
 
+```
 Requirements :
 ==============
 
