@@ -1,4 +1,4 @@
-boolPostgresToGwern
+PostgresToGwern
 =================
 
 Exemples :
@@ -30,5 +30,7 @@ Requirements :
 ==============
 
 Php 7.1
+
 postgresql 11
+
 pgsql2shp dans le PATH
