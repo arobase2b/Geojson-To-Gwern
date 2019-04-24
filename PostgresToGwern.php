@@ -32,18 +32,20 @@ class PostgresToGwern{
     }
 
     /**
-     * Execute la requete passé en paramètre.
-     * Nécessite que le filename soit configuré 
+     * Execute la requete passée en paramètre et génère un ZIP contenant le SHP.
+     * 
      *
-     * @param string $queryString requete postgresql
-     * @return bool
+     * @param string $filename
+     * @param string $dbname
+     * @param string $queryString
+     * @return void
      */
-    public function query(string $filename,string $tablename, string $queryString){
+    public function query(string $filename,string $dbname, string $queryString){
         if(self::isFnameValid($filename)){
             $uniqueName = $this->generateUniqueName($filename);
             $tempFolder = "$this->globalTmp/$uniqueName";
             mkdir($tempFolder);
-            exec("cd $tempFolder && pgsql2shp -f '$filename' -k -h $this->pg_host -u $this->pg_userName -P $this->pg_password $tablename $queryString ");
+            exec("cd $tempFolder && pgsql2shp -f '$filename' -k -h $this->pg_host -u $this->pg_userName -P $this->pg_password $dbname $queryString ");
             
             $ZF = new zipFolder($tempFolder);
             rename("$tempFolder.zip", "$this->destinationFolder/$uniqueName.zip");
